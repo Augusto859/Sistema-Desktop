@@ -1,5 +1,6 @@
-package biblioteaca;
+package biblioteca;
 import java.util.Scanner;
+import biblioteca.cadastrar_livro;
 
 public class principal {
 
@@ -11,6 +12,9 @@ public class principal {
 		
 		if (nome.equals("1")) {
 			System.out.println("Código da primeira opção...");
+			cadastrar_livro cadastro = new cadastrar_livro();
+			
+			
 		}
 		
 		else if (nome.equals("2")) {
