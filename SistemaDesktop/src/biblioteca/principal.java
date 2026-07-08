@@ -1,8 +1,10 @@
 package biblioteca;
 
 import java.util.Scanner;
+
 import biblioteca.cadastrar_livro;
 import biblioteca.consultar_disponibilidade;
+import biblioteca.cadastrar_usuario;
 import java.util.ArrayList;
 
 public class principal {
@@ -57,7 +59,30 @@ public class principal {
 			}
 
 			else if (opcao.equals("2")) {
-				System.out.println("Código da segunda opção...");
+				
+				String continuar_cadastro_usuario; 
+				
+				do {
+					cadastrar_usuario cadUser = new cadastrar_usuario();
+					
+					cadUser.nome_usuario();
+					cadUser.cpf();
+					cadUser.email();
+					cadUser.telefone();
+					
+					System.out.println("------USUÁRIO CADASTRADO COM SUCESSO------");
+					System.out.printf("Nome completo: %s%n", cadUser.nome_user);
+					System.out.printf("CPF: %s%n", cadUser.cpf);
+					System.out.printf("Email: %s%n", cadUser.email);
+					System.out.printf("Telefone: %s%n", cadUser.telefone);
+					
+					
+					System.out.println("\n[1] Cadastrar outro usuário");
+			        System.out.println("[2] Voltar para o menu principal");
+			        System.out.print("Escolha uma opção: ");
+			        continuar_cadastro_usuario = input_texto.nextLine();
+					
+				} while (continuar_cadastro_usuario.equals("1"));
 			}
 
 			else if (opcao.equals("3")) {
