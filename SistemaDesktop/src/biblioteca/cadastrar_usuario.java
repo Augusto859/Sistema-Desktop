@@ -58,8 +58,21 @@ public class cadastrar_usuario {
 	}
 	
 	public void telefone() {
-		System.out.println("Digite seu telefone: ");
-		this.telefone = input_texto.nextLine();
+		String regexTelefone = "^\\d{11}$";
+		
+		while (true) {
+	        System.out.println("Digite seu telefone : ");
+	        String entrada = input_texto.nextLine();
+	        
+	        if (entrada.matches(regexTelefone)) {
+	            this.telefone = entrada;
+	            break; 
+	        } 
+	        
+	        else {
+	            System.out.println("Telefone inválido! Certifique-se de digitar os 11 dígitos com o DDD.");
+	        }
+	    }
 		
 	}
 	

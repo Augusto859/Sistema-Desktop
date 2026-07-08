@@ -5,19 +5,40 @@ import java.util.Scanner;
 import biblioteca.cadastrar_livro;
 import biblioteca.consultar_disponibilidade;
 import biblioteca.cadastrar_usuario;
+import biblioteca.emprestar_livro;
 import java.util.ArrayList;
 
 public class principal {
 
 	public static void main(String[] args) {
-		ArrayList<cadastrar_livro> listaLivros = new ArrayList<>();
+		ArrayList<cadastrar_livro> listaLivros = new ArrayList<>(); // armazena os livros cadastrados em uma lista
+		ArrayList<cadastrar_usuario> listaUsers = new ArrayList<>(); // armazena os usuarios cadastrados em uma lista
+		
+		cadastrar_usuario usuario_teste = new cadastrar_usuario();
+		
+		usuario_teste.nome_user = "Dennis";
+		usuario_teste.cpf = "12345678900";
+		usuario_teste.email = "emailfalso@gmail.com";
+		usuario_teste.telefone = "080808080808";
+		listaUsers.add(usuario_teste);
+		
+		
+		cadastrar_livro livro_teste = new cadastrar_livro();
+		
+		livro_teste.nome_autor = "Machado de Assis";
+		livro_teste.nome_livro = "Dom Casmurro";
+		livro_teste.data_publicacao = "1899";
+		livro_teste.sinopse = "A clássica história sobre Bentinho e Capitu";
+		livro_teste.preco = 775.00;
+		listaLivros.add(livro_teste);
+		
 	
 		Scanner input_texto = new Scanner(System.in);
 		String opcao;
 		
 		do {
 			System.out.println("\n=== MENU PRINCIPAL ===");
-			System.out.println("1 - Cadastrar livro\n2 - Cadastrar usuário\n3 - Emprestar livro\n4 - Devovler livro\n5 - Consultar disponibilidade\n6 - Mostrar livros disponibilizados\n7 - Sair do sistema\n");
+			System.out.println("1 - Cadastrar livro\n2 - Cadastrar usuário\n3 - Empréstimo\n4 - Devovler livro\n5 - Consultar disponibilidade\n6 - Mostrar livros disponibilizados\n7 - Sair do sistema\n");
 			System.out.println("Selecione uma das opções acima: ");
 			opcao = input_texto.nextLine();
 			
@@ -76,6 +97,7 @@ public class principal {
 					System.out.printf("Email: %s%n", cadUser.email);
 					System.out.printf("Telefone: %s%n", cadUser.telefone);
 					
+					listaUsers.add(cadUser);
 					
 					System.out.println("\n[1] Cadastrar outro usuário");
 			        System.out.println("[2] Voltar para o menu principal");
@@ -86,7 +108,9 @@ public class principal {
 			}
 
 			else if (opcao.equals("3")) {
-				System.out.println("Código da terceira opção...");
+				emprestar_livro emprestimo = new emprestar_livro();
+				
+				emprestimo.confirmar_dados(listaUsers, listaLivros);
 			}
 
 			else if (opcao.equals("4")) {
