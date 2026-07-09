@@ -8,6 +8,8 @@ public class cadastrar_livro {
 	public String sinopse;
 	public double preco;
 	
+	public boolean emprestado = false; // todo livro, ao ser cadastrado, começará com essa condição
+	
 	public void nome_autor() {
 		Scanner nome = new Scanner(System.in);
 		System.out.println("Digite o nome do autor: ");

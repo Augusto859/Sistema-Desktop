@@ -2,10 +2,12 @@ package biblioteca;
 
 import java.util.Scanner;
 
+
 import biblioteca.cadastrar_livro;
 import biblioteca.consultar_disponibilidade;
 import biblioteca.cadastrar_usuario;
 import biblioteca.emprestar_livro;
+import biblioteca.devolver_livro;
 import java.util.ArrayList;
 
 public class principal {
@@ -13,6 +15,7 @@ public class principal {
 	public static void main(String[] args) {
 		ArrayList<cadastrar_livro> listaLivros = new ArrayList<>(); // armazena os livros cadastrados em uma lista
 		ArrayList<cadastrar_usuario> listaUsers = new ArrayList<>(); // armazena os usuarios cadastrados em uma lista
+		
 		
 		cadastrar_usuario usuario_teste = new cadastrar_usuario();
 		
@@ -114,17 +117,25 @@ public class principal {
 			}
 
 			else if (opcao.equals("4")) {
-				System.out.println("Código da quarta opção...");
+				devolver_livro devolucao = new devolver_livro();
+				devolucao.pedir_titulo(listaLivros);
 			}
 
 			else if (opcao.equals("5")) {
 				System.out.println("=== Lista de livros ===");
 				if (listaLivros.isEmpty()) {
 					System.out.println("Nenhum livro cadastrado.");
-				} else {
-					
-					for (cadastrar_livro livro: listaLivros) {
-						System.out.printf("Título: %s | Autor: %s%n", livro.nome_livro, livro.nome_autor);
+				} 
+				
+				else {
+					for (cadastrar_livro b: listaLivros) { // para cada livro disponivel na lista
+						if (b.emprestado == true) { // verifica se ele foi emprestado
+							System.out.printf("Livro: %s%nStatus: EMPRESTADO", b.nome_livro);
+						}
+						
+						else {
+							System.out.printf("Livro: %s%nStatus: DISPONÍVEL", b.nome_livro);
+						}
 					}
 				}
 			}

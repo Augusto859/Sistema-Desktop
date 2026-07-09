@@ -1,16 +1,19 @@
 package biblioteca;
 
-import java.util.ArrayList;
+import java.util.ArrayList; 
 import java.util.Scanner;
 
 public class emprestar_livro {
     
+	public boolean emprestado = false;
+	
     public void confirmar_dados(ArrayList<cadastrar_usuario> listaUsuarios, ArrayList<cadastrar_livro> listaLivros) {
         Scanner entrada = new Scanner(System.in);
         
         
         
         cadastrar_usuario usuario_encontrado = null;
+        
         
         // 1. LOOP DO CPF: Fica preso aqui até digitar um CPF válido
         while (true) {
@@ -19,8 +22,8 @@ public class emprestar_livro {
             
             // Busca na lista
             for (cadastrar_usuario u : listaUsuarios) {
-                if (u.cpf.equals(cpf_digitado)) {
-                    usuario_encontrado = u;
+                if (u.cpf.equalsIgnoreCase(cpf_digitado)) {
+                    usuario_encontrado = u;                  
                     break;
                 }
             }
@@ -29,7 +32,9 @@ public class emprestar_livro {
             if (usuario_encontrado != null) {
                 System.out.println("Usuário confirmado: " + usuario_encontrado.nome_user);
                 break; 
-            } else {
+            } 
+            
+            else {
                 System.out.println("Erro: CPF não encontrado no sistema! Tente novamente.");
             }
         }
@@ -52,7 +57,9 @@ public class emprestar_livro {
             // Se encontrou, sai do loop do Livro
             if (livro_encontrado != null) {
                 break; // Livro encontrado, sai do loop
-            } else {
+            } 
+            
+            else {
                 System.out.println("Erro: Livro não encontrado no acervo! Tente novamente.");
             }
         }
@@ -61,6 +68,9 @@ public class emprestar_livro {
         System.out.println("\nEmpréstimo realizado com sucesso!");
         System.out.printf("Livro: %s%n", livro_encontrado.nome_livro);
         System.out.printf("Retirado por: %s%n", usuario_encontrado.nome_user);
+        System.out.println("Prazo de devolução: 1 mês");
+        
+        livro_encontrado.emprestado = true; // o livro pedido pelo usuário tem sua condição de emprestado alterada para verdadeiro
         
     }
 }
