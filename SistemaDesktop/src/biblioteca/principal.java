@@ -9,6 +9,7 @@ import biblioteca.cadastrar_usuario;
 import biblioteca.emprestar_livro;
 import biblioteca.devolver_livro;
 import java.util.ArrayList;
+import biblioteca.exibir_emprestados;
 
 public class principal {
 
@@ -41,7 +42,7 @@ public class principal {
 		
 		do {
 			System.out.println("\n=== MENU PRINCIPAL ===");
-			System.out.println("1 - Cadastrar livro\n2 - Cadastrar usuário\n3 - Empréstimo\n4 - Devovler livro\n5 - Consultar disponibilidade\n6 - Mostrar livros disponibilizados\n7 - Sair do sistema\n");
+			System.out.println("1 - Cadastrar livro\n2 - Cadastrar usuário\n3 - Empréstimo\n4 - Devovler livro\n5 - Consultar disponibilidade\n6 - Exibir livros emprestados\n7 - Sair do sistema\n");
 			System.out.println("Selecione uma das opções acima: ");
 			opcao = input_texto.nextLine();
 			
@@ -141,7 +142,8 @@ public class principal {
 			}
 
 			else if (opcao.equals("6")) {
-				System.out.println("Código da sexta opção...");
+				exibir_emprestados emprestado = new exibir_emprestados();
+				emprestado.lista_emprestados(listaLivros);
 			}
 			
 		} while (!opcao.equals("7")); 
