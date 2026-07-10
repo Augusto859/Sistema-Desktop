@@ -3,6 +3,7 @@ package biblioteca;
 import java.util.ArrayList; 
 import java.util.Scanner;
 
+
 public class emprestar_livro {
     
 	public boolean emprestado = false;
@@ -56,19 +57,30 @@ public class emprestar_livro {
             
             // Se encontrou, sai do loop do Livro
             if (livro_encontrado != null) {
-                break; // Livro encontrado, sai do loop
+            	if (livro_encontrado.emprestado == true) {
+            		System.out.println("Esse livro já foi alugado. Tente de novo quando tiver sido devolvido.");
+            		break;
+            	}
+            	
+            	else {
+            		
+            		// 3. FINALIZAÇÃO DO EMPRÉSTIMO (Só chega aqui se o CPF e o Livro estiverem certos)
+                    System.out.println("\nEmpréstimo realizado com sucesso!");
+                    System.out.printf("Livro: %s%n", livro_encontrado.nome_livro);
+                    System.out.printf("Retirado por: %s%n", usuario_encontrado.nome_user);
+                    System.out.println("Prazo de devolução: 1 mês");
+            		break; // Livro encontrado, sai do loop
+            	}
+            	                                             
             } 
+            
             
             else {
                 System.out.println("Erro: Livro não encontrado no acervo! Tente novamente.");
             }
         }
         
-        // 3. FINALIZAÇÃO DO EMPRÉSTIMO (Só chega aqui se o CPF e o Livro estiverem certos)
-        System.out.println("\nEmpréstimo realizado com sucesso!");
-        System.out.printf("Livro: %s%n", livro_encontrado.nome_livro);
-        System.out.printf("Retirado por: %s%n", usuario_encontrado.nome_user);
-        System.out.println("Prazo de devolução: 1 mês");
+        
         
         livro_encontrado.emprestado = true; // o livro pedido pelo usuário tem sua condição de emprestado alterada para verdadeiro
         
